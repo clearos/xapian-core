@@ -1,7 +1,7 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
 Version: 1.0.2
-Release: 1
+Release: 2
 License: GPLv2+
 Group: Applications/Databases
 URL: http://www.xapian.org/
@@ -14,7 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %description
 Xapian is an Open Source Probabilistic Information Retrieval Library. It
 offers a highly adaptable toolkit that allows developers to easily add advanced
-indexing and search facilities to applications.
+indexing and search facilities to applications
 
 %package libs
 Summary: Xapian search engine libraries
@@ -24,7 +24,7 @@ Group: System Environment/Libraries
 Xapian is an Open Source Probabilistic Information Retrieval framework. It
 offers a highly adaptable toolkit that allows developers to easily add advanced
 indexing and search facilities to applications. This package provides the
-libraries for applications using Xapian functionality.
+libraries for applications using Xapian functionality
 
 %package devel
 Group: Development/Libraries
@@ -36,7 +36,7 @@ Requires: %{name}-libs = %{version}
 Xapian is an Open Source Probabilistic Information Retrieval framework. It
 offers a highly adaptable toolkit that allows developers to easily add advanced
 indexing and search facilities to applications. This package provides the
-files needed for building packages which use Xapian.
+files needed for building packages which use Xapian
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -75,6 +75,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-, root, root)
 %{_bindir}/xapian-check
+%{_bindir}/xapian-inspect
 %{_bindir}/xapian-tcpsrv
 %{_bindir}/xapian-progsrv
 %{_bindir}/quartzcheck
@@ -90,6 +91,7 @@ rm -rf %{buildroot}
 %doc %{_datadir}/doc/%{name}-%{version}
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian-check.1*
+%{_mandir}/man1/xapian-inspect.1*
 %{_mandir}/man1/xapian-tcpsrv.1*
 %{_mandir}/man1/xapian-progsrv.1*
 %{_mandir}/man1/quartzcheck.1*
@@ -116,6 +118,10 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Wed Aug 08 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-2
+- Add missing files
+- Minor cleanups
+
 * Wed Aug 08 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-1
 - Update to 1.0.2
 - Fix License tag
