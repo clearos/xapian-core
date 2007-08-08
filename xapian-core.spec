@@ -49,7 +49,7 @@ files needed for building packages which use Xapian
 # that doesn't matter here as we don't package it.
 autoreconf --force
 %configure --disable-static
-make
+make %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
