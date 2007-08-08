@@ -1,12 +1,12 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
-Version: 1.0.1
+Version: 1.0.2
 Release: 1
-License: GPL
+License: GPLv2+
 Group: Applications/Databases
 URL: http://www.xapian.org/
 Requires: %{name}-libs = %{version}
-Source0: http://www.oligarchy.co.uk/xapian/1.0.1/%{name}-%{version}.tar.gz
+Source0: http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
 BuildRequires: autoconf automake libtool
 BuildRequires: zlib-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -116,6 +116,10 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Wed Aug 08 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-1
+- Update to 1.0.2
+- Fix License tag
+
 * Sat Jun 16 2007 Marco Pesenti Gritti <mpg@redhat.com> 1.0.1-1
 - Update to 1.0.1
 
