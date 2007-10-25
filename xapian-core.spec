@@ -1,12 +1,13 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
 Version: 1.0.2
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2+
 Group: Applications/Databases
 URL: http://www.xapian.org/
 Requires: %{name}-libs = %{version}
 Source0: http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
+Patch0: multilib-devel-conflict-fix.patch
 BuildRequires: autoconf automake libtool
 BuildRequires: zlib-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -40,6 +41,7 @@ files needed for building packages which use Xapian
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p1 -b .multilibfix
 
 %build
 # FC6 (at least) has a patched libtool which knows not to set rpath for
@@ -118,6 +120,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Thu Oct 25 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-6
+- Fix multilib conflict in devel package (RH #343471)
+
 * Tue Aug 21 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-5
 - Rebuild for BuildID and ppc32 bug
 
