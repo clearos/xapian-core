@@ -1,6 +1,6 @@
 diff -upNr xapian-core-1.0.2.orign/xapian-config.in xapian-core-1.0.2/xapian-config.in
 --- xapian-core-1.0.2.orign/xapian-config.in	2007-07-05 02:39:51.000000000 +0200
-+++ xapian-core-1.0.2/xapian-config.in	2007-10-25 23:10:59.000000000 +0200
++++ xapian-core-1.0.2/xapian-config.in	2007-10-26 00:45:12.000000000 +0200
 @@ -68,7 +68,6 @@ set_F_to_extra_ldflags() {
  # -L option required (if any).
  set_L_to_library_path() {
@@ -9,3 +9,27 @@ diff -upNr xapian-core-1.0.2.orign/xapian-config.in xapian-core-1.0.2/xapian-con
  }
  
  # -I options for compiling against an uninstalled xapian.
+@@ -204,11 +203,6 @@ while [ 0 != "$#" ] ; do
+ 	    # yet.
+ 	    ;;
+ 	*)
+-	    # Only pull in dependency_libs if libtool would.
+-	    if [ no != "@link_all_deplibs_CXX@" ]; then
+-		extract_dependency_libs "@libdir@/libxapian.la"
+-		[ -n "$dependency_libs" ] && D=" $dependency_libs"
+-	    fi
+ 	    ;;
+ 	esac
+ 	echo "$F$L-lxapian$D"
+@@ -224,11 +218,6 @@ while [ 0 != "$#" ] ; do
+ 	    continue
+ 	fi
+ 
+-	if [ -f "@libdir@/libxapian.la" ]; then
+-	    echo "${F}@libdir@/libxapian.la"
+-	    continue
+-	fi
+-
+ 	# If we need to pull in dependency_libs, we need libxapian.la.  Otherwise
+ 	# we can cope with out it, which is useful as some Linux distros have an
+ 	# unhelpful policy of not packaging .la files.
