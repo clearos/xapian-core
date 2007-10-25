@@ -1,7 +1,7 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
 Version: 1.0.2
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv2+
 Group: Applications/Databases
 URL: http://www.xapian.org/
@@ -120,6 +120,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Fri Oct 25 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-7
+- Fix up multilib patch
+
 * Thu Oct 25 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-6
 - Fix multilib conflict in devel package (RH #343471)
 
