@@ -1,6 +1,6 @@
-diff -upNr xapian-core-1.0.2.orign/xapian-config.in xapian-core-1.0.2/xapian-config.in
---- xapian-core-1.0.2.orign/xapian-config.in	2007-07-05 02:39:51.000000000 +0200
-+++ xapian-core-1.0.2/xapian-config.in	2007-10-26 00:45:12.000000000 +0200
+diff -upNr xapian-core-1.0.4.orign/xapian-config.in xapian-core-1.0.4/xapian-config.in
+--- xapian-core-1.0.4.orign/xapian-config.in	2007-10-30 06:46:39.000000000 +0100
++++ xapian-core-1.0.4/xapian-config.in	2007-10-30 13:55:39.000000000 +0100
 @@ -68,7 +68,6 @@ set_F_to_extra_ldflags() {
  # -L option required (if any).
  set_L_to_library_path() {
@@ -9,19 +9,32 @@ diff -upNr xapian-core-1.0.2.orign/xapian-config.in xapian-core-1.0.2/xapian-con
  }
  
  # -I options for compiling against an uninstalled xapian.
-@@ -204,11 +203,6 @@ while [ 0 != "$#" ] ; do
- 	    # yet.
- 	    ;;
- 	*)
--	    # Only pull in dependency_libs if libtool would.
--	    if [ no != "@link_all_deplibs_CXX@" ]; then
--		extract_dependency_libs "@libdir@/libxapian.la"
--		[ -n "$dependency_libs" ] && D=" $dependency_libs"
--	    fi
- 	    ;;
- 	esac
+@@ -203,24 +202,7 @@ while [ 0 != "$#" ] ; do
+ 	fi
+ 	set_F_to_extra_ldflags
+ 	set_L_to_library_path
+-	extract_dlname "@libdir@/libxapian.la"
+-	# For static libraries, we need to explicitly link with dependency_libs
+-	# on all platforms.  For shared libraries, only pull in dependency_libs
+-	# if libtool would.
+-	explicit_dependencies=yes
+-	if [ -n "$dlname" ] && [ no != "@link_all_deplibs_CXX@" ]; then
+-	    case "@host_os@" in
+-	    linux* | k*bsd*-gnu)
+-		# We don't need dependency_libs for shared libraries on these
+-		# platforms, but upstream libtool doesn't know this (yet).
+-		explicit_dependencies=no ;;
+-	    esac
+-	fi
+ 	D=
+-	if [ yes = "$explicit_dependencies" ] ; then
+-	    extract_dependency_libs "@libdir@/libxapian.la"
+-	    [ -n "$dependency_libs" ] && D=" $dependency_libs"
+-	fi
  	echo "$F$L-lxapian$D"
-@@ -224,11 +218,6 @@ while [ 0 != "$#" ] ; do
+ 	;;
+ 
+@@ -234,11 +216,6 @@ while [ 0 != "$#" ] ; do
  	    continue
  	fi
  
@@ -30,6 +43,6 @@ diff -upNr xapian-core-1.0.2.orign/xapian-config.in xapian-core-1.0.2/xapian-con
 -	    continue
 -	fi
 -
- 	# If we need to pull in dependency_libs, we need libxapian.la.  Otherwise
- 	# we can cope with out it, which is useful as some Linux distros have an
- 	# unhelpful policy of not packaging .la files.
+ 	# If we need to pull in dependency_libs, we need libxapian.la.
+ 	# Otherwise we can cope with out it, which is useful as some Linux
+ 	# distros have an unhelpful policy of not packaging .la files.
