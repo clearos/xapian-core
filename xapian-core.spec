@@ -1,6 +1,6 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
-Version: 1.0.8
+Version: 1.0.9
 Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/Databases
@@ -120,6 +120,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Sat Nov 29 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.9-1
+- Update to 1.0.9
+
 * Sat Oct 11 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.8-1
 - Update to 1.0.8
 
