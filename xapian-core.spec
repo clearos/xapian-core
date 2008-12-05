@@ -1,7 +1,7 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
 Version: 1.0.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 Group: Applications/Databases
 URL: http://www.xapian.org/
@@ -49,7 +49,7 @@ files needed for building packages which use Xapian
 # this "autoreconf --force" and the "BuildRequires:" for the autotools
 # once upstream libtool is fixed.  Note: this overwrites INSTALL, but
 # that doesn't matter here as we don't package it.
-autoreconf --force
+autoreconf --force -i
 %configure --disable-static
 make %{?_smp_mflags}
 
@@ -120,6 +120,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Fri Dec 05 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.9-2
+- Fix build
+
 * Sat Nov 29 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.9-1
 - Update to 1.0.9
 
