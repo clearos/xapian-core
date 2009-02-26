@@ -1,7 +1,7 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
 Version: 1.0.9
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv2+
 Group: Applications/Databases
 URL: http://www.xapian.org/
@@ -120,6 +120,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.9-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Fri Dec 05 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.9-2
 - Fix build
 
