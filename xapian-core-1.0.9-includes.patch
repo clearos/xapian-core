@@ -1,0 +1,131 @@
+diff -ru xapian-core-1.0.9.orig/backends/flint/flint_version.cc xapian-core-1.0.9/backends/flint/flint_version.cc
+--- xapian-core-1.0.9.orig/backends/flint/flint_version.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/backends/flint/flint_version.cc	2009-03-04 12:06:34.000000000 +0000
+@@ -36,6 +36,7 @@
+ #include <string>
+ 
+ #include <string.h> // for memcmp
++#include <stdio.h> // for rename
+ 
+ using std::string;
+ 
+diff -ru xapian-core-1.0.9.orig/bin/quartzcompact.cc xapian-core-1.0.9/bin/quartzcompact.cc
+--- xapian-core-1.0.9.orig/bin/quartzcompact.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/bin/quartzcompact.cc	2009-03-04 12:48:51.000000000 +0000
+@@ -222,7 +222,7 @@
+     size_t block_size = 8192;
+ 
+     int c;
+-    while ((c = gnu_getopt_long(argc, argv, "b:nFhv", long_opts, 0)) != EOF) {
++    while ((c = gnu_getopt_long(argc, argv, "b:nFhv", long_opts, 0)) != -1) {
+         switch (c) {
+             case 'b': {
+ 		char *p;
+diff -ru xapian-core-1.0.9.orig/bin/quartzdump.cc xapian-core-1.0.9/bin/quartzdump.cc
+--- xapian-core-1.0.9.orig/bin/quartzdump.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/bin/quartzdump.cc	2009-03-04 12:48:54.000000000 +0000
+@@ -91,7 +91,7 @@
+     };
+ 
+     int c;
+-    while ((c = gnu_getopt_long(argc, argv, "r:s:e:", long_opts, 0)) != EOF) {
++    while ((c = gnu_getopt_long(argc, argv, "r:s:e:", long_opts, 0)) != -1) {
+         switch (c) {
+             case 'r':
+ 		revnum = atoi(optarg);
+diff -ru xapian-core-1.0.9.orig/bin/xapian-compact.cc xapian-core-1.0.9/bin/xapian-compact.cc
+--- xapian-core-1.0.9.orig/bin/xapian-compact.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/bin/xapian-compact.cc	2009-03-04 12:49:00.000000000 +0000
+@@ -748,7 +748,7 @@
+     bool renumber = true;
+ 
+     int c;
+-    while ((c = gnu_getopt_long(argc, argv, "b:nFm", long_opts, 0)) != EOF) {
++    while ((c = gnu_getopt_long(argc, argv, "b:nFm", long_opts, 0)) != -1) {
+ 	switch (c) {
+ 	    case 'b': {
+ 		char *p;
+diff -ru xapian-core-1.0.9.orig/bin/xapian-inspect.cc xapian-core-1.0.9/bin/xapian-inspect.cc
+--- xapian-core-1.0.9.orig/bin/xapian-inspect.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/bin/xapian-inspect.cc	2009-03-04 12:49:03.000000000 +0000
+@@ -94,7 +94,7 @@
+     };
+ 
+     int c;
+-    while ((c = gnu_getopt_long(argc, argv, "", long_opts, 0)) != EOF) {
++    while ((c = gnu_getopt_long(argc, argv, "", long_opts, 0)) != -1) {
+         switch (c) {
+ 	    case OPT_HELP:
+ 		cout << PROG_NAME" - "PROG_DESC"\n\n";
+diff -ru xapian-core-1.0.9.orig/bin/xapian-progsrv.cc xapian-core-1.0.9/bin/xapian-progsrv.cc
+--- xapian-core-1.0.9.orig/bin/xapian-progsrv.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/bin/xapian-progsrv.cc	2009-03-04 12:49:07.000000000 +0000
+@@ -60,7 +60,7 @@
+     bool syntax_error = false;
+ 
+     int c;
+-    while ((c = gnu_getopt_long(argc, argv, "t:", opts, NULL)) != EOF) {
++    while ((c = gnu_getopt_long(argc, argv, "t:", opts, NULL)) != -1) {
+ 	switch (c) {
+ 	    case OPT_HELP:
+ 		cout << PROG_NAME" - "PROG_DESC"\n\n";
+diff -ru xapian-core-1.0.9.orig/bin/xapian-tcpsrv.cc xapian-core-1.0.9/bin/xapian-tcpsrv.cc
+--- xapian-core-1.0.9.orig/bin/xapian-tcpsrv.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/bin/xapian-tcpsrv.cc	2009-03-04 12:49:12.000000000 +0000
+@@ -95,7 +95,7 @@
+     bool syntax_error = false;
+ 
+     int c;
+-    while ((c = gnu_getopt_long(argc, argv, "I:p:a:i:t:oq", opts, NULL)) != EOF) {
++    while ((c = gnu_getopt_long(argc, argv, "I:p:a:i:t:oq", opts, NULL)) != -1) {
+ 	switch (c) {
+ 	    case OPT_HELP:
+ 		cout << PROG_NAME" - "PROG_DESC"\n\n";
+diff -ru xapian-core-1.0.9.orig/common/serialise-double.cc xapian-core-1.0.9/common/serialise-double.cc
+--- xapian-core-1.0.9.orig/common/serialise-double.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/common/serialise-double.cc	2009-03-04 12:21:40.000000000 +0000
+@@ -56,7 +56,7 @@
+ # define MAX_MANTISSA_BYTES ((DBL_MANT_DIG + 1 + 1) / 2)
+ # define MAX_EXP ((DBL_MAX_EXP + 1) / 2)
+ # define MAX_MANTISSA (1 << ((DBL_MAX_EXP & 1) * 4))
+-#elif
++#else
+ # error FLT_RADIX is a value not currently handled (not 2 or 16)
+ // # define MAX_MANTISSA_BYTES (sizeof(double) + 1)
+ #endif
+diff -ru xapian-core-1.0.9.orig/examples/delve.cc xapian-core-1.0.9/examples/delve.cc
+--- xapian-core-1.0.9.orig/examples/delve.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/examples/delve.cc	2009-03-04 13:06:01.000000000 +0000
+@@ -172,7 +172,7 @@
+     bool valno_set = false;
+ 
+     int c;
+-    while ((c = gnu_getopt(argc, argv, "r:t:s:1vkV::d")) != EOF) {
++    while ((c = gnu_getopt(argc, argv, "r:t:s:1vkV::d")) != -1) {
+ 	switch (c) {
+ 	    case 'r':
+ 		recnos.push_back(atoi(optarg));
+diff -ru xapian-core-1.0.9.orig/examples/quest.cc xapian-core-1.0.9/examples/quest.cc
+--- xapian-core-1.0.9.orig/examples/quest.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/examples/quest.cc	2009-03-04 13:06:11.000000000 +0000
+@@ -80,7 +80,7 @@
+ 	Xapian::Database db;
+ 
+ 	int c;
+-	while ((c = gnu_getopt_long(argc, argv, "hvm:d:s:", long_opts, 0)) != EOF)
++	while ((c = gnu_getopt_long(argc, argv, "hvm:d:s:", long_opts, 0)) != -1)
+ 	{
+ 	    switch (c) {
+ 		case 'm':
+diff -ru xapian-core-1.0.9.orig/tests/harness/testsuite.cc xapian-core-1.0.9/tests/harness/testsuite.cc
+--- xapian-core-1.0.9.orig/tests/harness/testsuite.cc	2009-03-04 12:06:14.000000000 +0000
++++ xapian-core-1.0.9/tests/harness/testsuite.cc	2009-03-04 13:06:28.000000000 +0000
+@@ -648,7 +648,7 @@
+     }
+ 
+     int c;
+-    while ((c = gnu_getopt_long(argc, argv, opts.c_str(), long_opts, 0)) != EOF)
++    while ((c = gnu_getopt_long(argc, argv, opts.c_str(), long_opts, 0)) != -1)
+     {
+ 	switch (c) {
+ 	    case 'v':

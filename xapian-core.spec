@@ -1,13 +1,14 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
 Version: 1.0.9
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv2+
 Group: Applications/Databases
 URL: http://www.xapian.org/
 Requires: %{name}-libs = %{version}
 Source0: http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
 Patch0: multilib-devel-conflict-fix.patch
+Patch1: xapian-core-1.0.9-includes.patch
 BuildRequires: autoconf automake libtool
 BuildRequires: zlib-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -42,6 +43,7 @@ files needed for building packages which use Xapian
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1 -b .multilibfix
+%patch1 -p1 -b .includes
 
 %build
 # FC6 (at least) has a patched libtool which knows not to set rpath for
@@ -120,6 +122,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Wed Mar 04 2009 Caolán McNamara <caolanm@redhat.com> - 1.0.9-4
+- include stdio.h for rename, fix bare #elif, EOF -> -1 for getopt
+
 * Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.9-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
