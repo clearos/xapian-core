@@ -1,7 +1,7 @@
 Summary: The Xapian Probabilistic Information Retrieval Library
 Name: xapian-core
-Version: 1.0.9
-Release: 4%{?dist}
+Version: 1.0.11
+Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/Databases
 URL: http://www.xapian.org/
@@ -43,7 +43,7 @@ files needed for building packages which use Xapian
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1 -b .multilibfix
-%patch1 -p1 -b .includes
+#%patch1 -p1 -b .includes
 
 %build
 # FC6 (at least) has a patched libtool which knows not to set rpath for
@@ -122,6 +122,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Mon Apr 06 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.11-1
+- Update to 1.0.11
+
 * Wed Mar 04 2009 Caolán McNamara <caolanm@redhat.com> - 1.0.9-4
 - include stdio.h for rename, fix bare #elif, EOF -> -1 for getopt
 
