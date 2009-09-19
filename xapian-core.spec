@@ -1,17 +1,17 @@
-Summary: The Xapian Probabilistic Information Retrieval Library
-Name: xapian-core
-Version: 1.0.15
-Release: 1%{?dist}
-License: GPLv2+
-Group: Applications/Databases
-URL: http://www.xapian.org/
-Requires: %{name}-libs = %{version}
-Source0: http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
-Patch0: multilib-devel-conflict-fix.patch
-Patch1: xapian-core-1.0.9-includes.patch
-BuildRequires: autoconf automake libtool
+Name:          xapian-core
+Version:       1.0.16
+Release:       1%{?dist}
+Summary:       The Xapian Probabilistic Information Retrieval Library
+
+Group:         Applications/Databases
+License:       GPLv2+
+URL:           http://www.xapian.org/
+Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
+Patch0:        multilib-devel-conflict-fix.patch
+BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 BuildRequires: zlib-devel
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:      %{name}-libs = %{version}
 
 %description
 Xapian is an Open Source Probabilistic Information Retrieval Library. It
@@ -19,8 +19,8 @@ offers a highly adaptable toolkit that allows developers to easily add advanced
 indexing and search facilities to applications
 
 %package libs
-Summary: Xapian search engine libraries
-Group: System Environment/Libraries
+Summary:       Xapian search engine libraries
+Group:         System Environment/Libraries
 
 %description libs
 Xapian is an Open Source Probabilistic Information Retrieval framework. It
@@ -29,10 +29,10 @@ indexing and search facilities to applications. This package provides the
 libraries for applications using Xapian functionality
 
 %package devel
-Group: Development/Libraries
-Summary: Files needed for building packages which use Xapian
-Requires: %{name} = %{version}
-Requires: %{name}-libs = %{version}
+Group:         Development/Libraries
+Summary:       Files needed for building packages which use Xapian
+Requires:      %{name} = %{version}
+Requires:      %{name}-libs = %{version}
 
 %description devel
 Xapian is an Open Source Probabilistic Information Retrieval framework. It
@@ -41,33 +41,27 @@ indexing and search facilities to applications. This package provides the
 files needed for building packages which use Xapian
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0 -p1 -b .multilibfix
-#%patch1 -p1 -b .includes
 
 %build
-# FC6 (at least) has a patched libtool which knows not to set rpath for
-# /usr/lib64, which upstream libtool fails to do currently.  We can drop
-# this "autoreconf --force" and the "BuildRequires:" for the autotools
-# once upstream libtool is fixed.  Note: this overwrites INSTALL, but
-# that doesn't matter here as we don't package it.
-autoreconf --force -i
 %configure --disable-static
-make %{?_smp_mflags}
+
+# Remove rpath as per https://fedoraproject.org/wiki/Packaging/Guidelines#Beware_of_Rpath
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
+
+make %{?_smp_mflags} V=1
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}
-# makeinstall doesn't work properly with libtool built libraries
-make DESTDIR=%{buildroot} install
+make install DESTDIR=%{buildroot} INSTALL='install -p'
+
+# Remove libtool archives
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
-# Move the docs to the right place
-mv %{buildroot}%{_datadir}/doc/%{name} %{buildroot}%{_datadir}/doc/%{name}-devel-%{version}
-# Copy HACKING now, as "%doc HACKING" would overwrite everything
-cp HACKING %{buildroot}%{_datadir}/doc/%{name}-devel-%{version}
-# Copy the rest while we are in this directory
-mkdir -p %{buildroot}%{_datadir}/doc/%{name}-%{version}
-cp AUTHORS ChangeLog COPYING NEWS PLATFORMS README %{buildroot}%{_datadir}/doc/%{name}-%{version}
+
+# Remove the dev docs, we pick them up below
+rm -rf %{buildroot}%{_datadir}/doc/%{name}
 
 %post libs -p /sbin/ldconfig
 
@@ -78,6 +72,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-, root, root)
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/xapian-check
 %{_bindir}/xapian-inspect
 %{_bindir}/xapian-tcpsrv
@@ -92,7 +87,6 @@ rm -rf %{buildroot}
 %{_bindir}/simplesearch
 %{_bindir}/simpleexpand
 %{_bindir}/xapian-compact
-%doc %{_datadir}/doc/%{name}-%{version}
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian-check.1*
 %{_mandir}/man1/xapian-inspect.1*
@@ -112,16 +106,19 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-, root, root)
+%doc HACKING PLATFORMS docs/*html docs/apidoc docs/*pdf
 %{_bindir}/xapian-config
 %{_includedir}/xapian
 %{_includedir}/xapian.h
 %{_libdir}/libxapian.so
 %{_datadir}/aclocal/xapian.m4
-%doc %{_datadir}/doc/%{name}-devel-%{version}
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Sun Sep 19 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.16-1
+- Update to 1.0.16, some spec file cleanups
+
 * Thu Aug 27 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.15-1
 - Update to 1.0.15
 
