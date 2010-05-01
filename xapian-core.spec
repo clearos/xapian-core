@@ -1,5 +1,5 @@
 Name:          xapian-core
-Version:       1.0.20
+Version:       1.2.0
 Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
@@ -11,6 +11,7 @@ Patch0:        multilib-devel-conflict-fix.patch
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: zlib-devel
+BuildRequires: libuuid-devel
 Requires:      %{name}-libs = %{version}
 
 %description
@@ -42,7 +43,7 @@ files needed for building packages which use Xapian
 
 %prep
 %setup -q
-%patch0 -p1 -b .multilibfix
+#%patch0 -p1 -b .multilibfix
 
 %build
 %configure --disable-static
@@ -73,13 +74,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-, root, root)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%{_bindir}/xapian-check
-%{_bindir}/xapian-inspect
-%{_bindir}/xapian-tcpsrv
-%{_bindir}/xapian-progsrv
-%{_bindir}/quartzcheck
-%{_bindir}/quartzcompact
-%{_bindir}/quartzdump
+%{_bindir}/xapian*
 %{_bindir}/quest
 %{_bindir}/delve
 %{_bindir}/copydatabase
@@ -88,17 +83,10 @@ rm -rf %{buildroot}
 %{_bindir}/simpleexpand
 %{_bindir}/xapian-compact
 # man pages may be gzipped, hence the trailing wildcard.
-%{_mandir}/man1/xapian-check.1*
-%{_mandir}/man1/xapian-inspect.1*
-%{_mandir}/man1/xapian-tcpsrv.1*
-%{_mandir}/man1/xapian-progsrv.1*
-%{_mandir}/man1/quartzcheck.1*
-%{_mandir}/man1/quartzcompact.1*
-%{_mandir}/man1/quartzdump.1*
+%{_mandir}/man1/xapian*
 %{_mandir}/man1/quest.1*
 %{_mandir}/man1/delve.1*
 %{_mandir}/man1/copydatabase.1*
-%{_mandir}/man1/xapian-compact.1*
 
 %files libs
 %defattr(-, root, root)
@@ -109,15 +97,14 @@ rm -rf %{buildroot}
 %doc HACKING PLATFORMS docs/*html docs/apidoc docs/*pdf
 %{_bindir}/xapian-config
 %{_includedir}/xapian
-%{_includedir}/xapian.h
 %{_libdir}/libxapian.so
 %{_datadir}/aclocal/xapian.m4
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
-* Sat May  1 2010 Peter Robinson <pbrobinson@gmail.com> - 1.0.20-1
-- Update to 1.0.20
+* Sat May  1 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-1
+- Update to 1.2.0
 
 * Sun Mar 21 2010 Peter Robinson <pbrobinson@gmail.com> - 1.0.18-1
 - Update to 1.0.18
