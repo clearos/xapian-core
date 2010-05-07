@@ -1,6 +1,6 @@
 Name:          xapian-core
 Version:       1.2.0
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -59,7 +59,7 @@ rm -rf %{buildroot}
 make install DESTDIR=%{buildroot} INSTALL='install -p'
 
 # Remove libtool archives
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+# find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 # Remove the dev docs, we pick them up below
 rm -rf %{buildroot}%{_datadir}/doc/%{name}
@@ -98,11 +98,15 @@ rm -rf %{buildroot}
 %{_bindir}/xapian-config
 %{_includedir}/xapian
 %{_libdir}/libxapian.so
+%{_libdir}/libxapian.la
 %{_datadir}/aclocal/xapian.m4
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Fri May  7 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-3
+- Add the libtool archive (temporarily) to fix build of bindings
+
 * Sat May  1 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-2
 - Upload new source 
 
