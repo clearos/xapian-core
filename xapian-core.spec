@@ -1,6 +1,6 @@
 Name:          xapian-core
 Version:       1.2.0
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -12,7 +12,7 @@ BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: zlib-devel
 BuildRequires: libuuid-devel
-Requires:      %{name}-libs = %{version}
+Requires:      %{name}-libs = %{version}-%{release}
 
 %description
 Xapian is an Open Source Probabilistic Information Retrieval Library. It
@@ -32,8 +32,8 @@ libraries for applications using Xapian functionality
 %package devel
 Group:         Development/Libraries
 Summary:       Files needed for building packages which use Xapian
-Requires:      %{name} = %{version}
-Requires:      %{name}-libs = %{version}
+Requires:      %{name} = %{version}-%{release}
+Requires:      %{name}-libs = %{version}-%{release}
 
 %description devel
 Xapian is an Open Source Probabilistic Information Retrieval framework. It
@@ -43,7 +43,6 @@ files needed for building packages which use Xapian
 
 %prep
 %setup -q
-#%patch0 -p1 -b .multilibfix
 
 %build
 %configure --disable-static
@@ -73,7 +72,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-, root, root)
-%doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/xapian*
 %{_bindir}/quest
 %{_bindir}/delve
@@ -90,6 +88,7 @@ rm -rf %{buildroot}
 
 %files libs
 %defattr(-, root, root)
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_libdir}/libxapian.so.*
 
 %files devel
@@ -104,6 +103,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Fri May  7 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-4
+- Move license to libs package, a few other spc cleanups
+
 * Fri May  7 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-3
 - Add the libtool archive (temporarily) to fix build of bindings
 
