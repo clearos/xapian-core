@@ -1,13 +1,12 @@
 Name:          xapian-core
-Version:       1.2.0
-Release:       4%{?dist}
+Version:       1.2.2
+Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
 License:       GPLv2+
 URL:           http://www.xapian.org/
 Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
-Patch0:        multilib-devel-conflict-fix.patch
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: zlib-devel
@@ -103,6 +102,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-1
+- Update to 1.2.2
+
 * Fri May  7 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-4
 - Move license to libs package, a few other spc cleanups
 
