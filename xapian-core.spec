@@ -1,6 +1,6 @@
 Name:          xapian-core
 Version:       1.2.2
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -102,13 +102,10 @@ rm -rf %{buildroot}
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian-config.1*
 
-    File listed twice: /usr/bin/xapian-compact
-    Installed (but unpackaged) file(s) found:
-   /usr/include/xapian.h
-   /usr/lib/cmake/xapian/xapian-config-version.cmake
-   /usr/lib/cmake/xapian/xapian-config.cmake
-
 %changelog
+* Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-3
+- And remove non spec cut-n-paste issue
+
 * Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-2
 - Add cmake stuff
 
