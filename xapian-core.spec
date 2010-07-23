@@ -1,6 +1,6 @@
 Name:          xapian-core
 Version:       1.2.2
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -78,7 +78,6 @@ rm -rf %{buildroot}
 %{_bindir}/simpleindex
 %{_bindir}/simplesearch
 %{_bindir}/simpleexpand
-%{_bindir}/xapian-compact
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian*
 %{_mandir}/man1/quest.1*
@@ -95,13 +94,24 @@ rm -rf %{buildroot}
 %doc HACKING PLATFORMS docs/*html docs/apidoc docs/*pdf
 %{_bindir}/xapian-config
 %{_includedir}/xapian
+%{_includedir}/xapian.h
 %{_libdir}/libxapian.so
 %{_libdir}/libxapian.la
+%{_libdir}/cmake/xapian
 %{_datadir}/aclocal/xapian.m4
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian-config.1*
 
+    File listed twice: /usr/bin/xapian-compact
+    Installed (but unpackaged) file(s) found:
+   /usr/include/xapian.h
+   /usr/lib/cmake/xapian/xapian-config-version.cmake
+   /usr/lib/cmake/xapian/xapian-config.cmake
+
 %changelog
+* Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-2
+- Add cmake stuff
+
 * Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-1
 - Update to 1.2.2
 
