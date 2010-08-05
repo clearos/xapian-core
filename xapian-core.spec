@@ -1,6 +1,6 @@
 Name:          xapian-core
 Version:       1.2.2
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -44,7 +44,7 @@ files needed for building packages which use Xapian
 %setup -q
 
 %build
-%configure --disable-static
+%configure --disable-static --disable-sse
 
 # Remove rpath as per https://fedoraproject.org/wiki/Packaging/Guidelines#Beware_of_Rpath
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
@@ -103,6 +103,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Thu Aug  5 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-4
+- Disable SSE instructions by default
+
 * Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-3
 - And remove non spec cut-n-paste issue
 
