@@ -1,6 +1,6 @@
 Name:          xapian-core
-Version:       1.2.2
-Release:       5%{?dist}
+Version:       1.2.3
+Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -108,6 +108,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Mon Aug 30 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.3-1
+- Update to 1.2.3
+
 * Thu Aug  5 2010 Adel Gadllah <adel.gadllah@gmail.com> - 1.2.2-5
 - Reenable SSE on x86_64
 
