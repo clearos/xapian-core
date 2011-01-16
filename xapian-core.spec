@@ -1,5 +1,5 @@
 Name:          xapian-core
-Version:       1.2.3
+Version:       1.2.4
 Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
@@ -108,6 +108,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Sun Jan 16 2011 Peter Robinson <pbrobinson@gmail.com> - 1.2.4-1
+- Update to 1.2.4
+
 * Mon Aug 30 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.3-1
 - Update to 1.2.3
 
