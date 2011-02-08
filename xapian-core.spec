@@ -1,6 +1,6 @@
 Name:          xapian-core
 Version:       1.2.4
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -108,6 +108,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.4-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Sun Jan 16 2011 Peter Robinson <pbrobinson@gmail.com> - 1.2.4-1
 - Update to 1.2.4
 
