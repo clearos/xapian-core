@@ -1,13 +1,12 @@
 Name:          xapian-core
-Version:       1.2.4
-Release:       2%{?dist}
+Version:       1.2.7
+Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
 License:       GPLv2+
 URL:           http://www.xapian.org/
 Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
-BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: zlib-devel
 BuildRequires: libuuid-devel
@@ -58,7 +57,6 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 make %{?_smp_mflags} V=1
 
 %install
-rm -rf %{buildroot}
 make install DESTDIR=%{buildroot} INSTALL='install -p'
 
 # Remove libtool archives
@@ -70,9 +68,6 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %post libs -p /sbin/ldconfig
 
 %postun libs -p /sbin/ldconfig
-
-%clean
-rm -rf %{buildroot}
 
 %files
 %defattr(-, root, root)
@@ -108,67 +103,70 @@ rm -rf %{buildroot}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Thu Aug 18 2011 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.7-1
+- Update to 1.2.7
+
 * Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
-* Sun Jan 16 2011 Peter Robinson <pbrobinson@gmail.com> - 1.2.4-1
+* Sun Jan 16 2011 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.4-1
 - Update to 1.2.4
 
-* Mon Aug 30 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.3-1
+* Mon Aug 30 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.3-1
 - Update to 1.2.3
 
 * Thu Aug  5 2010 Adel Gadllah <adel.gadllah@gmail.com> - 1.2.2-5
 - Reenable SSE on x86_64
 
-* Thu Aug  5 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-4
+* Thu Aug  5 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.2-4
 - Disable SSE instructions by default
 
-* Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-3
+* Wed Jul 14 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.2-3
 - And remove non spec cut-n-paste issue
 
-* Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-2
+* Wed Jul 14 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.2-2
 - Add cmake stuff
 
-* Wed Jul 14 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.2-1
+* Wed Jul 14 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.2-1
 - Update to 1.2.2
 
-* Fri May  7 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-4
+* Fri May  7 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.0-4
 - Move license to libs package, a few other spc cleanups
 
-* Fri May  7 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-3
+* Fri May  7 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.0-3
 - Add the libtool archive (temporarily) to fix build of bindings
 
-* Sat May  1 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-2
+* Sat May  1 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.0-2
 - Upload new source 
 
-* Sat May  1 2010 Peter Robinson <pbrobinson@gmail.com> - 1.2.0-1
+* Sat May  1 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.0-1
 - Update to 1.2.0
 
-* Sun Mar 21 2010 Peter Robinson <pbrobinson@gmail.com> - 1.0.18-1
+* Sun Mar 21 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.18-1
 - Update to 1.0.18
 
-* Wed Dec  2 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.17-1
+* Wed Dec  2 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.17-1
 - Update to 1.0.17
 
-* Sun Sep 19 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.16-1
+* Sun Sep 19 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.16-1
 - Update to 1.0.16, some spec file cleanups
 
-* Thu Aug 27 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.15-1
+* Thu Aug 27 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.15-1
 - Update to 1.0.15
 
-* Wed Jul 29 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.14-1
+* Wed Jul 29 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.14-1
 - Update to 1.0.14
 
 * Mon Jul 27 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.13-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
-* Fri Jun  5 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.13-1
+* Fri Jun  5 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.13-1
 - Update to 1.0.13
 
-* Sun Apr 12 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.12-1
+* Sun Apr 12 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.12-1
 - Update to 1.0.12
 
-* Mon Apr 06 2009 Peter Robinson <pbrobinson@gmail.com> - 1.0.11-1
+* Mon Apr 06 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.11-1
 - Update to 1.0.11
 
 * Wed Mar 04 2009 Caolán McNamara <caolanm@redhat.com> - 1.0.9-4
