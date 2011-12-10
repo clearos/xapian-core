@@ -1,4 +1,6 @@
-xapian-core-1.2.2.tar.gz
-/xapian-core-1.2.3.tar.gz
-/xapian-core-1.2.4.tar.gz
-/xapian-core-1.2.7.tar.gz
+clog
+xapian-core-*.tar.*
+xapian-core-*.src.rpm
+.build-*.log
+/i?86/
+/x86_64/
