@@ -1,6 +1,1 @@
-clog
 xapian-core-*.tar.*
-xapian-core-*.src.rpm
-.build-*.log
-/i?86/
-/x86_64/
