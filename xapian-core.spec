@@ -1,5 +1,5 @@
 Name:          xapian-core
-Version:       1.2.9
+Version:       1.2.12
 Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
@@ -103,6 +103,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Wed Jul  4 2012 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.12-1
+- Update to 1.2.12
+
 * Sun Apr 29 2012 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.9-1
 - Update to 1.2.9
 
