@@ -1,6 +1,6 @@
 Name:          xapian-core
-Version:       1.2.14
-Release:       2%{?dist}
+Version:       1.2.15
+Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -103,6 +103,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Fri Aug 23 2013 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.15-1
+- Update to 1.2.15
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.14-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
@@ -168,89 +171,3 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 
 * Sat May  1 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.2.0-1
 - Update to 1.2.0
-
-* Sun Mar 21 2010 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.18-1
-- Update to 1.0.18
-
-* Wed Dec  2 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.17-1
-- Update to 1.0.17
-
-* Sun Sep 19 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.16-1
-- Update to 1.0.16, some spec file cleanups
-
-* Thu Aug 27 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.15-1
-- Update to 1.0.15
-
-* Wed Jul 29 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.14-1
-- Update to 1.0.14
-
-* Mon Jul 27 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.13-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
-
-* Fri Jun  5 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.13-1
-- Update to 1.0.13
-
-* Sun Apr 12 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.12-1
-- Update to 1.0.12
-
-* Mon Apr 06 2009 Peter Robinson <pbrobinson@fedoraproject.org> - 1.0.11-1
-- Update to 1.0.11
-
-* Wed Mar 04 2009 Caolán McNamara <caolanm@redhat.com> - 1.0.9-4
-- include stdio.h for rename, fix bare #elif, EOF -> -1 for getopt
-
-* Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.9-3
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
-
-* Fri Dec 05 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.9-2
-- Fix build
-
-* Sat Nov 29 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.9-1
-- Update to 1.0.9
-
-* Sat Oct 11 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.8-1
-- Update to 1.0.8
-
-* Sun Jul 20 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.7-1
-- Update to 1.0.7
-
-* Sun Mar 30 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.6-1
-- Update to 1.0.6
-
-* Sat Feb 09 2008 Adel Gadllah <adel.gadllah@gmail.com> 1.0.5-2
-- Rebuild for gcc-4.3
-
-* Thu Dec 27 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.5-1
-- Update to 1.0.5
-
-* Tue Oct 30 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.4-1
-- Update to 1.0.4
-
-* Fri Oct 25 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-7
-- Fix up multilib patch
-
-* Thu Oct 25 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-6
-- Fix multilib conflict in devel package (RH #343471)
-
-* Tue Aug 21 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-5
-- Rebuild for BuildID and ppc32 bug
-
-* Wed Aug 08 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-4
-- Add disttag
-
-* Wed Aug 08 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-3
-- Bump to avoid tag conflict
-
-* Wed Aug 08 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-2
-- Add missing files
-- Minor cleanups
-
-* Wed Aug 08 2007 Adel Gadllah <adel.gadllah@gmail.com> 1.0.2-1
-- Update to 1.0.2
-- Fix License tag
-
-* Sat Jun 16 2007 Marco Pesenti Gritti <mpg@redhat.com> 1.0.1-1
-- Update to 1.0.1
-
-* Tue May  8 2007 Marco Pesenti Gritti <mpg@redhat.com> 0.9.10-2.2.svn8397
-- Initial build
