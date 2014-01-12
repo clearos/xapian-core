@@ -1,5 +1,5 @@
 Name:          xapian-core
-Version:       1.2.15
+Version:       1.2.16
 Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
@@ -70,7 +70,6 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %postun libs -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
 %{_bindir}/xapian*
 %{_bindir}/quest
 %{_bindir}/delve
@@ -85,12 +84,10 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/copydatabase.1*
 
 %files libs
-%defattr(-, root, root)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %{_libdir}/libxapian.so.*
 
 %files devel
-%defattr(-, root, root)
 %doc HACKING PLATFORMS docs/*html docs/apidoc docs/*pdf
 %{_bindir}/xapian-config
 %{_includedir}/xapian
@@ -103,6 +100,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Sun Jan 12 2014 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.16-1
+- Update to 1.2.16
+
 * Fri Aug 23 2013 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.15-1
 - Update to 1.2.15
 
