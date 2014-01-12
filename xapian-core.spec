@@ -6,7 +6,7 @@ Summary:       The Xapian Probabilistic Information Retrieval Library
 Group:         Applications/Databases
 License:       GPLv2+
 URL:           http://www.xapian.org/
-Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
+Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.xz
 
 BuildRequires: zlib-devel
 BuildRequires: libuuid-devel
