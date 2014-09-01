@@ -1,6 +1,6 @@
 Name:          xapian-core
-Version:       1.2.17
-Release:       3%{?dist}
+Version:       1.2.18
+Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -10,7 +10,8 @@ Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.t
 
 BuildRequires: zlib-devel
 BuildRequires: libuuid-devel
-Requires:      %{name}-libs = %{version}-%{release}
+Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
+
 
 %description
 Xapian is an Open Source Probabilistic Information Retrieval Library. It
@@ -30,8 +31,8 @@ libraries for applications using Xapian functionality
 %package devel
 Group:         Development/Libraries
 Summary:       Files needed for building packages which use Xapian
-Requires:      %{name} = %{version}-%{release}
-Requires:      %{name}-libs = %{version}-%{release}
+Requires:      %{name}%{?_isa} = %{version}-%{release}
+Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
 
 %description devel
 Xapian is an Open Source Probabilistic Information Retrieval framework. It
@@ -100,6 +101,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Mon Sep  1 2014 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.18-1
+- Update to 1.2.18
+
 * Mon Aug 18 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.17-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
