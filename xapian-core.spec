@@ -1,6 +1,6 @@
 Name:          xapian-core
 Version:       1.2.19
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -101,6 +101,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Wed Feb 25 2015 Than Ngo <than@redhat.com> 1.2.19-3
+- rebuilt against new gcc5
+
 * Sat Feb 07 2015 Rex Dieter <rdieter@fedoraproject.org> 1.2.19-2
 - rebuild (gcc)
 
