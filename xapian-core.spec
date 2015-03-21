@@ -1,6 +1,6 @@
 Name:          xapian-core
-Version:       1.2.19
-Release:       3%{?dist}
+Version:       1.2.20
+Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -33,6 +33,7 @@ Group:         Development/Libraries
 Summary:       Files needed for building packages which use Xapian
 Requires:      %{name}%{?_isa} = %{version}-%{release}
 Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:      libuuid-devel
 
 %description devel
 Xapian is an Open Source Probabilistic Information Retrieval framework. It
@@ -61,7 +62,7 @@ make %{?_smp_mflags} V=1
 make install DESTDIR=%{buildroot} INSTALL='install -p'
 
 # Remove libtool archives
-# find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+find $RPM_BUILD_ROOT -name '*.la' -delete
 
 # Remove the dev docs, we pick them up below
 rm -rf %{buildroot}%{_datadir}/doc/%{name}
@@ -94,13 +95,16 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_includedir}/xapian
 %{_includedir}/xapian.h
 %{_libdir}/libxapian.so
-%{_libdir}/libxapian.la
 %{_libdir}/cmake/xapian
+%{_libdir}/pkgconfig/xapian-core.pc
 %{_datadir}/aclocal/xapian.m4
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Sat Mar 21 2015 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.20-1
+- Update to 1.2.20
+
 * Wed Feb 25 2015 Than Ngo <than@redhat.com> 1.2.19-3
 - rebuilt against new gcc5
 
