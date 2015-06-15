@@ -1,6 +1,6 @@
 Name:          xapian-core
-Version:       1.2.20
-Release:       2%{?dist}
+Version:       1.2.21
+Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -102,6 +102,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Mon Jun 15 2015 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.21-1
+- Update to 1.2.21
+
 * Wed Apr 15 2015 Petr Pisar <ppisar@redhat.com> - 1.2.20-2
 - Rebuild owing to C++ ABI change in GCC-5 (bug #1195353)
 
