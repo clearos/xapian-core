@@ -1,6 +1,6 @@
 Name:          xapian-core
-Version:       1.2.21
-Release:       3%{?dist}
+Version:       1.2.22
+Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -86,7 +86,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/copydatabase.1*
 
 %files libs
-%doc AUTHORS ChangeLog COPYING NEWS README
+%{!?_licensedir:%global license %%doc}
+%license COPYING
+%doc AUTHORS NEWS README
 %{_libdir}/libxapian.so.*
 
 %files devel
@@ -102,6 +104,10 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Wed Jan  6 2016 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.22-1
+- Update to 1.2.22
+- Use %%license
+
 * Fri Nov 27 2015 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.21-3
 - Rebuild
 
