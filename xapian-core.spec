@@ -1,5 +1,5 @@
 Name:          xapian-core
-Version:       1.2.23
+Version:       1.4.1
 Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
@@ -10,6 +10,9 @@ Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.t
 
 BuildRequires: zlib-devel
 BuildRequires: libuuid-devel
+%ifarch %{valgrind_arches}
+BuildRequires: valgrind-devel
+%endif
 Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
 
 
@@ -72,27 +75,26 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %postun libs -p /sbin/ldconfig
 
 %files
+%doc AUTHORS NEWS README
 %{_bindir}/xapian*
 %{_bindir}/quest
-%{_bindir}/delve
 %{_bindir}/copydatabase
 %{_bindir}/simpleindex
 %{_bindir}/simplesearch
 %{_bindir}/simpleexpand
+%{_datadir}/xapian-core/
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian*
 %{_mandir}/man1/quest.1*
-%{_mandir}/man1/delve.1*
 %{_mandir}/man1/copydatabase.1*
 
 %files libs
 %{!?_licensedir:%global license %%doc}
 %license COPYING
-%doc AUTHORS NEWS README
 %{_libdir}/libxapian.so.*
 
 %files devel
-%doc HACKING PLATFORMS docs/*html docs/apidoc docs/*pdf
+%doc HACKING PLATFORMS docs/*html docs/apidoc
 %{_bindir}/xapian-config
 %{_includedir}/xapian
 %{_includedir}/xapian.h
@@ -104,6 +106,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Thu Nov 24 2016 Peter Robinson <pbrobinson@fedoraproject.org> 1.4.1-1
+- Update to 1.4.1
+
 * Tue Jul  5 2016 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.23-1
 - Update to 1.2.23
 
