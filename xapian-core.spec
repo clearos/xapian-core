@@ -1,5 +1,5 @@
 Name:          xapian-core
-Version:       1.4.1
+Version:       1.4.3
 Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
@@ -106,6 +106,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Sat Feb  4 2017 Peter Robinson <pbrobinson@fedoraproject.org> 1.4.3-1
+- Update to 1.4.3
+
 * Thu Nov 24 2016 Peter Robinson <pbrobinson@fedoraproject.org> 1.4.1-1
 - Update to 1.4.1
 
