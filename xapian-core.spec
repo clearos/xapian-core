@@ -1,6 +1,6 @@
 Name:          xapian-core
 Version:       1.4.3
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
 Group:         Applications/Databases
@@ -10,8 +10,10 @@ Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.t
 
 BuildRequires: zlib-devel
 BuildRequires: libuuid-devel
+%if ! 0%{?_module_build}
 %ifarch %{valgrind_arches}
 BuildRequires: valgrind-devel
+%endif
 %endif
 Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -106,6 +108,9 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Fri Apr 21 2017 Karsten Hopp <karsten@redhat.com> - 1.4.3-3
+- use new _module_build macro to limit dependencies for Modularity
+
 * Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
