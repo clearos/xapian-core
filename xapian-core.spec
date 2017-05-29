@@ -1,5 +1,5 @@
 Name:          xapian-core
-Version:       1.2.22
+Version:       1.4.4
 Release:       1%{?dist}
 Summary:       The Xapian Probabilistic Information Retrieval Library
 
@@ -10,6 +10,11 @@ Source0:       http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.t
 
 BuildRequires: zlib-devel
 BuildRequires: libuuid-devel
+%if ! 0%{?_module_build}
+%ifarch %{valgrind_arches}
+BuildRequires: valgrind-devel
+%endif
+%endif
 Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
 
 
@@ -72,27 +77,26 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %postun libs -p /sbin/ldconfig
 
 %files
+%doc AUTHORS NEWS README
 %{_bindir}/xapian*
 %{_bindir}/quest
-%{_bindir}/delve
 %{_bindir}/copydatabase
 %{_bindir}/simpleindex
 %{_bindir}/simplesearch
 %{_bindir}/simpleexpand
+%{_datadir}/xapian-core/
 # man pages may be gzipped, hence the trailing wildcard.
 %{_mandir}/man1/xapian*
 %{_mandir}/man1/quest.1*
-%{_mandir}/man1/delve.1*
 %{_mandir}/man1/copydatabase.1*
 
 %files libs
 %{!?_licensedir:%global license %%doc}
 %license COPYING
-%doc AUTHORS NEWS README
 %{_libdir}/libxapian.so.*
 
 %files devel
-%doc HACKING PLATFORMS docs/*html docs/apidoc docs/*pdf
+%doc HACKING PLATFORMS docs/*html docs/apidoc
 %{_bindir}/xapian-config
 %{_includedir}/xapian
 %{_includedir}/xapian.h
@@ -104,6 +108,30 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %{_mandir}/man1/xapian-config.1*
 
 %changelog
+* Tue May 16 2017 Peter Robinson <pbrobinson@fedoraproject.org> 1.4.4-1
+- Update to 1.4.4
+
+* Mon May 15 2017 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.3-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_27_Mass_Rebuild
+
+* Fri Apr 21 2017 Karsten Hopp <karsten@redhat.com> - 1.4.3-3
+- use new _module_build macro to limit dependencies for Modularity
+
+* Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
+* Sat Feb  4 2017 Peter Robinson <pbrobinson@fedoraproject.org> 1.4.3-1
+- Update to 1.4.3
+
+* Thu Nov 24 2016 Peter Robinson <pbrobinson@fedoraproject.org> 1.4.1-1
+- Update to 1.4.1
+
+* Tue Jul  5 2016 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.23-1
+- Update to 1.2.23
+
+* Fri Feb 05 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.22-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Wed Jan  6 2016 Peter Robinson <pbrobinson@fedoraproject.org> 1.2.22-1
 - Update to 1.2.22
 - Use %%license
